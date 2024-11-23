@@ -1,0 +1,91 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.todo-card {
+  background-color: $light-grey;
+  padding: 20px;
+  @include sizes(60vw, auto);
+
+  &__heading {
+    @include textStyles($fz-24, $medium, 24px, $dark-blue, center);
+    margin-bottom: 20px;
+  }
+
+  .todo-section {
+    background: $white;
+    width: 100%;
+    padding-right: 15px;
+
+    & .input-container {
+      @include flexStyles(flex, row, center, center);
+    }
+  }
+}
+
+.todo-input {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid $dark-grey;
+  padding: 20px;
+  @include sizes(100%, fit-content);
+  border-bottom: 20px;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid $dark-grey;
+  }
+}
+
+.todo-item {
+  padding: 10px;
+  border-bottom: 1px solid $dark-grey;
+  @include flexStyles(flex, row, space-between, center);
+
+  & .content {
+    @include flexStyles(flex, row, flex-start, center);
+  }
+
+  .circle {
+    @include sizes(40px, 40px);
+    border-radius: 100%;
+    @include flexStyles(flex, row, center, center);
+    border: 1px solid $dark-grey;
+    margin-right: 30px;
+  }
+
+  .completed-todo-label {
+    text-decoration: line-through;
+  }
+
+  .actions{
+    @include flexStyles(flex, row, center, center);
+    gap: 10px;
+  }
+
+  & :hover{
+    cursor: pointer;
+  }
+}
+
+.todo-list {
+  margin-bottom: 20px;
+}
+
+.todo-card__footer {
+  @include flexStyles(flex, row, space-between, flex-start);
+  padding: 15px;
+
+  .statuses {
+    display: flex;
+    gap: 5px;
+
+    .active-status {
+      border: 1px solid $dark-grey;
+      padding: 5px;
+    }
+
+    .inactive-status {
+      padding: 5px;
+    }
+  }
+}

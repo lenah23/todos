@@ -1,0 +1,7 @@
+@import './styles/mixins';
+@import './styles/variables';
+
+.App {
+  @include sizes(100vw, 100vh);
+  @include flexStyles(flex, row, center, center);
+}
