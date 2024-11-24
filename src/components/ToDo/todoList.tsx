@@ -3,12 +3,12 @@ import {
   FetchArgs,
   MutationDefinition,
 } from '@reduxjs/toolkit/query';
+import { TypedMutationTrigger } from '@reduxjs/toolkit/dist/query/react';
+import { FetchBaseQueryMeta } from '@reduxjs/toolkit/query';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { ITodoItem, statusesEnum } from '../../interfaces';
 import { TodoItem } from '../index';
 import styles from './todo.module.scss';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { FetchBaseQueryMeta } from '@reduxjs/toolkit/query';
-import { TypedMutationTrigger } from '@reduxjs/toolkit/dist/query/react';
 
 interface IProps {
   todoList: any;
@@ -42,8 +42,10 @@ const TodoList: React.FC<IProps> = (props) => {
     <div className={styles['todo-list']}>
       {props?.todoList
         ?.filter(filterMap[props.activeStatus])
+        ?.slice()?.reverse()
         .map((item: ITodoItem) => (
           <TodoItem
+            key={item?.id}
             completed={item?.completed}
             todoLabel={item?.title}
             onClick={() =>
@@ -54,7 +56,6 @@ const TodoList: React.FC<IProps> = (props) => {
               })
             }
             id={item?.id}
-            key={item?.id}
           />
         ))}
     </div>

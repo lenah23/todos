@@ -16,3 +16,9 @@ export interface IStatusesList {
   id: number;
   label: statusesEnum;
 }
+
+export interface IEditTodoValues {
+  id: number;
+  completed: boolean;
+  title: string;
+}

@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { Button } from '@mui/material';
 import UseTodoHooks from './todo.hooks';
+import { TodoForm, CustomModal } from '../index';
 import styles from './todo.module.scss';
-import CustomModal from '../CustomModal/customModal';
-import TodoForm from '../ToDoForm/todoForm';
 
 interface IProps {
   todoLabel: string;
@@ -17,15 +15,14 @@ const TodoItem: React.FC<IProps> = (props) => {
   const {
     open,
     handleClickOpen,
-    handleClose,
-    deleteTododReq,
-    activeAction,
     setActiveAction,
-    setTodoId,
+    deleteTododReq,
     handleSubmit,
+    handleClose,
+    setTodoId,
     onSubmit,
-    register,
     control,
+    activeAction,
   } = UseTodoHooks();
 
   return (
@@ -66,7 +63,6 @@ const TodoItem: React.FC<IProps> = (props) => {
         children={
           activeAction === 'edit' && (
             <TodoForm
-              register={register}
               handleSubmit={handleSubmit}
               onSubmit={onSubmit}
               control={control}

@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { IEditTodoValues, IStatusesList, statusesEnum } from '../../interfaces';
 import {
   useCreateNewTodoMutation,
   useDeleteCompletedTodosMutation,
@@ -7,15 +10,8 @@ import {
   useGetTodosListQuery,
   useUpdateTodoMutation,
 } from '../../store/Requests/todoApi';
-import { IStatusesList, statusesEnum } from '../../interfaces';
-import { FieldValues, useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
 
-interface IEditTodoValues {
-  id: number;
-  completed: boolean;
-  title: string;
-}
+
 
 const UseTodoHooks = () => {
   const statusesList: IStatusesList[] = [
@@ -45,16 +41,32 @@ const UseTodoHooks = () => {
 
   // requests
   const { data: todoList } = useGetTodosListQuery();
-  const [updateTodoReq, {isSuccess: updateTodoSuccess}] = useUpdateTodoMutation();
+  const [updateTodoReq, { isSuccess: updateTodoSuccess }] =
+    useUpdateTodoMutation();
   const [createTodoReq] = useCreateNewTodoMutation();
   const [clearCompletedTodods] = useDeleteCompletedTodosMutation();
-  const [deleteTododReq] = useDeleteTodoMutation();
-  const { data: todoByIdData, isSuccess: todoByIdDataSuccess } = useGetTodoByIdQuery(
-    todoId!,
-    { skip: !todoId }
-  );
+  const [deleteTododReq, {isSuccess: deleteTodoSuccess}] = useDeleteTodoMutation();
+  const { data: todoByIdData, isSuccess: todoByIdDataSuccess } =
+    useGetTodoByIdQuery(todoId!, { skip: !todoId });
 
-  console.log(todoByIdData, 'todoByIdData');
+  // useform
+  const {
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    control,
+  } = useForm<FieldValues | IEditTodoValues>({
+    defaultValues: {
+      id: todoByIdData?.id,
+      completed: todoByIdData?.completed,
+      title: todoByIdData?.title,
+    },
+  });
+
+  const onSubmit = (data: FieldValues | IEditTodoValues) => {
+    updateTodoReq(data);
+  };
+
   // useEffects
   useEffect(() => {
     if (todoList) {
@@ -66,10 +78,22 @@ const UseTodoHooks = () => {
 
   useEffect(() => {
     if (updateTodoSuccess) {
-      toast.success(("updated successfully"));
+      toast.success('updated successfully');
       handleClose();
     }
-  }, [updateTodoSuccess]);
+    if (deleteTodoSuccess) {
+      toast.success('deleted successfully');
+      handleClose();
+    }
+  }, [updateTodoSuccess, deleteTodoSuccess]);
+
+  useEffect(() => {
+    if (todoByIdDataSuccess) {
+      setValue('id', todoByIdData?.id);
+      setValue('completed', todoByIdData?.completed);
+      setValue('title', todoByIdData?.title);
+    }
+  }, [todoByIdDataSuccess]);
 
   // functions
   const addNewTodo = async () => {
@@ -98,55 +122,27 @@ const UseTodoHooks = () => {
     setOpen(false);
   };
 
-  const {
-    handleSubmit,
-    formState: { errors },
-    register,
-    setValue,
-    control
-  } = useForm<FieldValues | IEditTodoValues>({
-    defaultValues: {
-      id: todoByIdData?.id,
-      completed: todoByIdData?.completed,
-      title: todoByIdData?.title,
-    },
-  });
-
-  const onSubmit = (data: FieldValues | IEditTodoValues) => {
-    updateTodoReq(data);
-    console.log(data, 'dataaaaaaaaaa');
-  };
-
-  useEffect(() => {
-    if (todoByIdDataSuccess) {
-      setValue('id', todoByIdData?.id);
-      setValue('completed', todoByIdData?.completed);
-      setValue('title', todoByIdData?.title)
-    }
-  }, [todoByIdDataSuccess]);
-
   return {
+    open,
+    control,
     todoList,
     itemsLeft,
     inputValue,
     activeStatus,
     statusesList,
-    setInputValue,
-    addNewTodo,
-    setActiveStatus,
-    updateTodoReq,
-    handleClearCompletedTodos,
-    open,
-    handleClickOpen,
-    handleClose,
-    deleteTododReq,
     activeAction,
+    handleClearCompletedTodos,
+    setActiveStatus,
+    handleClickOpen,
     setActiveAction,
-    setTodoId,
+    deleteTododReq,
+    setInputValue,
+    updateTodoReq,
     handleSubmit,
+    handleClose,
+    addNewTodo,
+    setTodoId,
     onSubmit,
-    register,
-    control,
   };
 };
 

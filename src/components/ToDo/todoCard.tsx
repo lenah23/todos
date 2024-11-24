@@ -11,16 +11,16 @@ const TodoCard: React.FC = () => {
     inputValue,
     activeStatus,
     statusesList,
-    setInputValue,
     addNewTodo,
-    setActiveStatus,
     updateTodoReq,
+    setInputValue,
+    setActiveStatus,
     handleClearCompletedTodos,
   } = UseTodoHooks();
 
   return (
     <div className={styles['todo-card']}>
-      <h3 className={styles['todo-card__heading']}>todos</h3>
+      <h3 className={styles['todo-card__heading']}>Todos</h3>
       <div className={styles['todo-section']}>
         <div className={styles['input-container']}>
           <CustomInput

@@ -1,16 +1,15 @@
-import { TextField } from '@mui/material';
-import { Controller, FieldValues, useForm } from 'react-hook-form';
-import CustomInput from '../CustomInput/customInput';
+import { Control, Controller, FieldValues, UseFormHandleSubmit } from 'react-hook-form';
+import { IEditTodoValues } from '../../interfaces';
+import {CustomInput} from '../index';
 
 interface IProps {
-  handleSubmit: any;
-  onSubmit: any;
-  register: any;
-  control: any;
+  handleSubmit: UseFormHandleSubmit<IEditTodoValues | FieldValues, undefined>;
+  onSubmit: (data: FieldValues | IEditTodoValues) => void;
+  control: Control<FieldValues | IEditTodoValues, any>;
 }
 
 const TodoForm: React.FC<IProps> = (props) => {
-  const { register, handleSubmit, onSubmit, control } = props;
+  const { handleSubmit, onSubmit, control } = props;
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div style={{ marginBottom: '10px' }}>

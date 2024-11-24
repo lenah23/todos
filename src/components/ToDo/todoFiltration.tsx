@@ -1,5 +1,5 @@
-import styles from './todo.module.scss';
 import { IStatusesList, statusesEnum } from '../../interfaces';
+import styles from './todo.module.scss';
 
 interface IProps {
   itemsLeft: number | null;
@@ -21,7 +21,7 @@ const TodoFiltration: React.FC<IProps> = (props) => {
   return (
     <div className={styles['todo-card__footer']}>
       <div className={styles['']}>
-        {props?.itemsLeft} {props?.itemsLeft === 1 ? 'item' : 'items'} left
+        {itemsLeft} {itemsLeft === 1 ? 'item' : 'items'} left
       </div>
       <div className={styles['statuses']}>
         {statusesList.map((item: { id: number; label: statusesEnum }) => {
