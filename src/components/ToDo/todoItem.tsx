@@ -25,6 +25,7 @@ const TodoItem: React.FC<IProps> = (props) => {
     handleSubmit,
     onSubmit,
     register,
+    control,
   } = UseTodoHooks();
 
   return (
@@ -68,6 +69,7 @@ const TodoItem: React.FC<IProps> = (props) => {
               register={register}
               handleSubmit={handleSubmit}
               onSubmit={onSubmit}
+              control={control}
             />
           )
         }

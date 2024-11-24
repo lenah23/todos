@@ -1,0 +1,29 @@
+.todo-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: rgb(63, 63, 63);
+  border: 2px solid grey;
+  border-radius: 8px;
+  background-color: white;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: rgba(26, 32, 129, 0.3);
+    box-shadow: 0 0 8px rgba(80, 91, 241, 0.3);
+  }
+
+  &:hover {
+    border-color: blue;
+  }
+
+  &::placeholder {
+    color: grey;
+    transition: color 0.3s ease;
+  }
+
+  &:focus::placeholder {
+    color: transparent;
+  }
+}

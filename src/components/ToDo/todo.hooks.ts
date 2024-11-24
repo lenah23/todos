@@ -103,6 +103,7 @@ const UseTodoHooks = () => {
     formState: { errors },
     register,
     setValue,
+    control
   } = useForm<FieldValues | IEditTodoValues>({
     defaultValues: {
       id: todoByIdData?.id,
@@ -145,6 +146,7 @@ const UseTodoHooks = () => {
     handleSubmit,
     onSubmit,
     register,
+    control,
   };
 };
 

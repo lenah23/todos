@@ -1,8 +1,8 @@
-import styles from './todo.module.scss';
+import styles from './customInput.module.scss';
 
 interface IProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
+  placeholder?: string;
   value: string;
 }
 

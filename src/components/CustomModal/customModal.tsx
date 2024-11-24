@@ -20,6 +20,12 @@ const CustomModal: React.FC<IProps> = (props) => {
       onClose={handleClose}
       aria-labelledby='alert-dialog-title'
       aria-describedby='alert-dialog-description'
+      sx={{
+        '& .MuiDialog-paper': {
+          minWidth: '500px',
+          padding: "0 25px"
+        },
+      }}
     >
       <DialogTitle id='alert-dialog-title'>{title}</DialogTitle>
       {children && children}
