@@ -32,11 +32,16 @@ const TodoCard: React.FC = () => {
             Add
           </Button>
         </div>
-        <TodoList
-          todoList={todoList}
-          updateTodoReq={updateTodoReq}
-          activeStatus={activeStatus}
-        />
+        {todoList && todoList?.length > 0 ? (
+          <TodoList
+            todoList={todoList}
+            updateTodoReq={updateTodoReq}
+            activeStatus={activeStatus}
+          />
+        ) : (
+          <div className={styles["empty-list"]}>todo list is empty</div>
+        )}
+
         <TodoFiltration
           itemsLeft={itemsLeft}
           activeStatus={activeStatus}

@@ -1,14 +1,3 @@
 {
-  "todos": [
-    {
-      "id": 1,
-      "title": "learn react ",
-      "completed": true
-    },
-    {
-      "id": 2,
-      "title": "learn typescript",
-      "completed": true
-    }
-  ]
+  "todos": []
 }
