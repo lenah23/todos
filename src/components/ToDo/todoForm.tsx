@@ -6,7 +6,7 @@ import {
 } from 'react-hook-form';
 import { IEditTodoValues } from '../../interfaces';
 import { CustomInput } from '../index';
-import styles from './todoForm.module.scss';
+import styles from './todo.module.scss';
 
 interface IProps {
   handleSubmit: UseFormHandleSubmit<IEditTodoValues | FieldValues, undefined>;
