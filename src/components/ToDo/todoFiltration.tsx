@@ -40,7 +40,7 @@ const TodoFiltration: React.FC<IProps> = (props) => {
           );
         })}
       </div>
-      <div className={styles['']} onClick={handleClearCompletedTodos}>
+      <div style={{ cursor: 'pointer' }} onClick={handleClearCompletedTodos}>
         Clear completed
       </div>
     </div>

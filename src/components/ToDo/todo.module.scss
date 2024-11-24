@@ -18,6 +18,8 @@
 
     & .input-container {
       @include flexStyles(flex, row, center, center);
+      gap: 20px;
+      padding: 20px;
     }
   }
 }
@@ -57,12 +59,12 @@
     text-decoration: line-through;
   }
 
-  .actions{
+  .actions {
     @include flexStyles(flex, row, center, center);
     gap: 10px;
   }
 
-  & :hover{
+  & :hover {
     cursor: pointer;
   }
 }
@@ -82,10 +84,18 @@
     .active-status {
       border: 1px solid $dark-grey;
       padding: 5px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .inactive-status {
       padding: 5px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

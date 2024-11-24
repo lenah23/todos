@@ -5,7 +5,7 @@
   padding: 12px 16px;
   font-size: 16px;
   color: $dark-grey;
-  border: 2px solid $light-grey;
+  border: 2px solid $dark-grey;
   border-radius: 8px;
   background-color: $white;
   transition: all 0.3s ease;
@@ -21,7 +21,7 @@
   }
 
   &::placeholder {
-    color: $light-grey;
+    color: $dark-grey;
     transition: color 0.3s ease;
   }
 
