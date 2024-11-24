@@ -1,6 +1,12 @@
-import { Control, Controller, FieldValues, UseFormHandleSubmit } from 'react-hook-form';
+import {
+  Control,
+  Controller,
+  FieldValues,
+  UseFormHandleSubmit,
+} from 'react-hook-form';
 import { IEditTodoValues } from '../../interfaces';
-import {CustomInput} from '../index';
+import { CustomInput } from '../index';
+import styles from './todoForm.module.scss';
 
 interface IProps {
   handleSubmit: UseFormHandleSubmit<IEditTodoValues | FieldValues, undefined>;
@@ -21,18 +27,21 @@ const TodoForm: React.FC<IProps> = (props) => {
           )}
         />
       </div>
-      <label htmlFor='completed'>
+      <label htmlFor='completed' className={styles['checkbox-container']}>
         <Controller
           name='completed'
           control={control}
           render={({ field: { onChange, value } }) => (
-            <input
-              id='completed'
-              type='checkbox'
-              checked={value}
-              onChange={onChange}
-              value={value}
-            />
+            <>
+              <input
+                id='completed'
+                type='checkbox'
+                checked={value}
+                onChange={(e) => onChange(e.target.checked)}
+                className={styles['hidden-checkbox']}
+              />
+              <span className={styles['custom-checkbox']}></span>
+            </>
           )}
         />
         Completed

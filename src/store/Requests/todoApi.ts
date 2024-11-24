@@ -10,7 +10,7 @@ import { ITodoItem, ITodoList } from '../../interfaces';
 export const todosApi = createApi({
   reducerPath: 'patientsApi',
   tagTypes: ['todos'],
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASEURL }),
   endpoints: (builder) => ({
     getTodosList: builder.query<ITodoList, void>({
       query() {
